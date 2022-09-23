@@ -23,5 +23,13 @@ namespace TestProrject.Data
 
         public DbSet<CustomerInfo> CustomerInfos { get; set; }
         public DbSet<QRs> QRs {get; set; }
+        public DbSet<Supplier> Suppliers {get; set; }
+
+
+
+        public DbSet<Department> Departments {get; set; }
+        public DbSet<Course> Courses {get; set; }
+        public DbSet<PaymentRecharge> PaymentRecharges {get; set; }
+        public DbSet<Student> Students {get; set; }
     }
 }

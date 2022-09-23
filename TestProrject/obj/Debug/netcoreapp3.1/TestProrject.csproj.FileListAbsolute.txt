@@ -448,3 +448,6 @@ C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Ra
 C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Sales\Salesdetails.cshtml.g.cs
 C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Customer\EdiCustomer.cshtml.g.cs
 C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Product\EditProduct.cshtml.g.cs
+C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Supplier\SupplierCrt.cshtml.g.cs
+C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Supplier\SuppliertIndex.cshtml.g.cs
+C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Supplier\SuPdetails.cshtml.g.cs

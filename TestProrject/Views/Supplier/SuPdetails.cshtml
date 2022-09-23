@@ -1,0 +1,50 @@
+﻿@model TestProrject.Models.Supplier
+
+@*@{
+    IEnumerable<PurityERP.Areas.Management.ViewModel.InventoryVM> InvTxnList
+        = ViewData["InvTxnInfo"] as IEnumerable<PurityERP.Areas.Management.ViewModel.InventoryVM>;
+}*@
+
+<h1>Details</h1>
+
+<div>
+    <h4>Supplier</h4>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="Quantity">Supplier</label>
+                    <h6>On @Model.SupplierNAme</h6>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="Quantity">Number</label>
+                    <h6>@Model.SNMbr</h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="Quantity">Number</label>
+                    <h6>@Model.SupplierAddress</h6>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+
+
+
+
+
+</div>
+@*<div>
+    <a asp-action="EditInventory" asp-route-id="@Model.InventoryId">Edit</a> |
+    <a asp-action="InventoryIndex">Back to List</a>
+</div>*@

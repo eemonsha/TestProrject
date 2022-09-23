@@ -19,6 +19,34 @@ namespace TestProrject.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("TestProrject.Models.Course", b =>
+                {
+                    b.Property<int>("CourseID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CourseCode")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("CourseName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("Coursecredit")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("CoursecreditPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("CourseID");
+
+                    b.ToTable("Courses");
+                });
+
             modelBuilder.Entity("TestProrject.Models.CustomerInfo", b =>
                 {
                     b.Property<int>("CustomerID")
@@ -44,6 +72,47 @@ namespace TestProrject.Migrations
                     b.HasKey("CustomerID");
 
                     b.ToTable("CustomerInfos");
+                });
+
+            modelBuilder.Entity("TestProrject.Models.Department", b =>
+                {
+                    b.Property<int>("DepartmentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("DepartmentName")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<int>("DepartmentScore")
+                        .HasColumnType("int");
+
+                    b.HasKey("DepartmentID");
+
+                    b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("TestProrject.Models.PaymentRecharge", b =>
+                {
+                    b.Property<int>("PaymentRID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("PStudentID")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("PaymentAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("PaymentRID");
+
+                    b.ToTable("PaymentRecharges");
                 });
 
             modelBuilder.Entity("TestProrject.Models.Product", b =>
@@ -188,6 +257,71 @@ namespace TestProrject.Migrations
                     b.HasKey("SalesProID");
 
                     b.ToTable("SalesProducts");
+                });
+
+            modelBuilder.Entity("TestProrject.Models.Student", b =>
+                {
+                    b.Property<int>("StudentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("DepID")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ISApproved")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PPicture")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("RemainBalance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("StudentIDentity")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("StudentName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("StudentScore")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StudentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StudentID");
+
+                    b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("TestProrject.Models.Supplier", b =>
+                {
+                    b.Property<int>("SupplierID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("SNMbr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SupplierAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SupplierNAme")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SupplierID");
+
+                    b.ToTable("Suppliers");
                 });
 
             modelBuilder.Entity("TestProrject.Models.Users", b =>
