@@ -1,0 +1,120 @@
+﻿@model TestProrject.ViewModel.StudentVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="card card-primary mt-5">
+        <div class="card-header">
+            <h3 class="card-title">Student Create</h3>
+        </div>
+        <form enctype="multipart/form-data" asp-action="StudentCreate">
+
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Student Name</label>
+                            <input type="text" required class="form-control" id="exampleInputPassword1" placeholder="Name" asp-for="StudentName">
+                            <p class="text-danger">    @TempData["msg"]</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Student Id</label>
+                            <input type="text" required class="form-control" id="exampleInputPassword1" placeholder="identity" asp-for="StudentIDentity">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="DepID" class="control-label">Department</label>
+                        <div class=" input-group">
+                            <select class="form-control select2" data-native-menu="false" id="deepart" asp-for="DepID" asp-items="ViewBag.deepart">
+                                <option disabled selected="selected">Select One</option>
+                            </select>
+                            @**@
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <a href="#" data-toggle="modal"
+                                       data-target="#Depcreate">  <i class="fas fa-plus-circle"></i></a>
+                                </span>
+                            </div>
+                        </div>
+                        <span asp-validation-for="DepID" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Balance</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Balance" asp-for="Balance">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Remain Balance</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Remain Balance" asp-for="RemainBalance">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Score</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Score" asp-for="StudentScore">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Image</label>
+                            <input class="form-control" id="initqty" asp-for="StudentImage" accept="image/*">
+                        </div>
+                    </div>
+                    <div class=" col-md-3">
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="ISActive" /> @Html.DisplayNameFor(model => model.ISActive)
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                
+
+            </div>
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+    @*<script>
+            function initqtyf() {
+                var qty = document.getElementById('initqty').value;
+                document.getElementById('remainqty').value = qty;
+            }
+
+
+
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            });
+
+        </script>*@
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</body>
+</html>
+
+
+
