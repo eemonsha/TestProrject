@@ -25,7 +25,11 @@ namespace TestProrject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNToastNotifyNoty(new NToastNotify.NotyOptions() { 
+                ProgressBar = true,
+                Timeout = 50000,
+                Theme = "mint"
+            });
             services.AddDbContext<DataContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -34,6 +38,7 @@ namespace TestProrject
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseNToastNotify();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -10,8 +10,8 @@ using TestProrject.Data;
 namespace TestProrject.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220923184154_init")]
-    partial class init
+    [Migration("20220924055007_initrk")]
+    partial class initrk
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,6 +43,9 @@ namespace TestProrject.Migrations
 
                     b.Property<decimal>("CoursecreditPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("DepartID")
+                        .HasColumnType("int");
 
                     b.HasKey("CourseID");
 
@@ -274,7 +277,7 @@ namespace TestProrject.Migrations
                     b.Property<int>("DepID")
                         .HasColumnType("int");
 
-                    b.Property<bool>("ISApproved")
+                    b.Property<bool>("ISActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("PPicture")

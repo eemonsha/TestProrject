@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZfCuD73RgtShKaXvyKL6hqZmfktIkl6n8dVrf1HJ2RbOYuL3lyJX1s07CVtzVgAnvUj3dhSo99pkBmvyjTkcHw==",
+  "dgSpecHash": "0nmn6dE/NxJwBA/snEk3QCDuyAF58qZdtgJ7M4kkBrYinCBkV+6TXEBVzeM/4LBENZENkw7az8asdK1vR4sAKg==",
   "success": true,
   "projectFilePath": "C:\\Users\\emons\\source\\repos\\TestProrject\\TestProrject\\TestProrject.csproj",
   "expectedPackageFiles": [
@@ -206,7 +206,8 @@
     "C:\\Users\\emons\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\emons\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\emons\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\emons\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\emons\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\emons\\.nuget\\packages\\toastr\\2.1.1\\toastr.2.1.1.nupkg.sha512"
   ],
   "logs": []
 }

@@ -23,6 +23,9 @@ namespace TestProrject.Models
         public int Coursecredit { get; set; }
 
         [Required]
+        public int DepartID { get; set; }
+
+        [Required]
         public decimal CoursecreditPrice { get; set; }
     }
 }

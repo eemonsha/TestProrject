@@ -75,6 +75,10 @@
             "Select2.js": {
               "target": "Package",
               "version": "[4.0.13, )"
+            },
+            "toastr": {
+              "target": "Package",
+              "version": "[2.1.1, )"
             }
           },
           "imports": [

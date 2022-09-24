@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TestProrject.Migrations
 {
-    public partial class init : Migration
+    public partial class initr : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -161,7 +161,7 @@ namespace TestProrject.Migrations
                     Balance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     RemainBalance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PPicture = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ISApproved = table.Column<bool>(type: "bit", nullable: false),
+                    ISActive = table.Column<bool>(type: "bit", nullable: false),
                     StudentScore = table.Column<int>(type: "int", nullable: false),
                     StudentStatus = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },

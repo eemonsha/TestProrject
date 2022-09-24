@@ -9,9 +9,6 @@ namespace TestProrject.Models
     public class Student
     {
 
-        
-
-
         [Key]
         public int StudentID { get; set; }
 
@@ -29,7 +26,7 @@ namespace TestProrject.Models
         public decimal Balance { get; set; }
         public decimal RemainBalance { get; set; }
         public String PPicture { get; set; }
-        public bool ISApproved { get; set; }
+        public bool ISActive { get; set; }
         public int StudentScore { get; set; }
 
         [Required]
