@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace TestProrject.ViewModel
 {
-    public class StudentVM
+    public class StudentPictureShowVM
     {
-
-
         public int StudentID { get; set; }
         public String StudentName { get; set; }
         public String StudentIDentity { get; set; }
@@ -24,8 +22,20 @@ namespace TestProrject.ViewModel
 
         //Image Add
         public IFormFile StudentImage { get; set; }
-        public string StudentPicture { get; set; }
 
         public bool DeleteStu { get; set; }
+
+
+
+
+
+        public int DepartmentID { get; set; }
+
+
+        public String DepartmentName { get; set; }
+
+
+        public int DepartmentScore { get; set; }
+
     }
 }

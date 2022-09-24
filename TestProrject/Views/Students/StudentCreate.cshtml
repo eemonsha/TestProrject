@@ -22,13 +22,14 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Student Name</label>
                             <input type="text" required class="form-control" id="exampleInputPassword1" placeholder="Name" asp-for="StudentName">
-                            <p class="text-danger">    @TempData["msg"]</p>
+                            
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Student Id</label>
                             <input type="text" required class="form-control" id="exampleInputPassword1" placeholder="identity" asp-for="StudentIDentity">
+                            <p class="text-danger">    @TempData["msg"]</p>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -56,12 +57,12 @@
                             <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Balance" asp-for="Balance">
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    @*<div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Remain Balance</label>
                             <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Remain Balance" asp-for="RemainBalance">
                         </div>
-                    </div>
+                    </div>*@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Score</label>
