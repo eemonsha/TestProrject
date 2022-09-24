@@ -453,3 +453,5 @@ C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Ra
 C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Supplier\SuPdetails.cshtml.g.cs
 C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Department\DepartmentCreate.cshtml.g.cs
 C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Department\DepartmentIndex.cshtml.g.cs
+C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Course\CourseCreate.cshtml.g.cs
+C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Course\CourseIndex.cshtml.g.cs

@@ -27,7 +27,7 @@ namespace TestProrject
         {
             services.AddControllersWithViews().AddNToastNotifyNoty(new NToastNotify.NotyOptions() { 
                 ProgressBar = true,
-                Timeout = 50000,
+                Timeout = 3,
                 Theme = "mint"
             });
             services.AddDbContext<DataContext>(options =>

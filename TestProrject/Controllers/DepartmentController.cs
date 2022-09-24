@@ -33,6 +33,12 @@ namespace TestProrject.Controllers
         [HttpPost]
         public IActionResult DepartmentCreate(Department department)
         {
+            var dep = _context.Departments.Where(x => x.DepartmentName == department.DepartmentName).FirstOrDefault();
+            if(dep != null)
+            {
+                _toastNotification.AddErrorToastMessage("An existing Department exists in the same name");
+                return View(dep);
+            }
             _context.Departments.Add(department);
             _context.SaveChanges();
             _toastNotification.AddSuccessToastMessage("Department Added");

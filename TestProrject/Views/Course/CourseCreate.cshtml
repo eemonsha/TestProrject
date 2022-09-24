@@ -1,0 +1,169 @@
+﻿@model TestProrject.Models.Course
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <div class="card card-primary mt-5">
+        <div class="card-header">
+            <h3 class="card-title">Course Create</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form asp-action="CourseCreate">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Course Code</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Code" required asp-for="CourseCode" value="@ViewBag.code">
+                        </div>
+                        <span asp-validation-for="CourseCode" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Course Name</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Inventory Tittle" required asp-for="CourseName">
+                        </div>
+                        <span asp-validation-for="CourseName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Course Credit</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Credit" asp-for="Coursecredit">
+                        </div>
+                        <span asp-validation-for="Coursecredit" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Credit Price</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Price" asp-for="CoursecreditPrice">
+                        </div>
+                        <span asp-validation-for="Coursecredit" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="DepartID" class="control-label">Department</label>
+                        <div class=" input-group">
+                            <select class="form-control select2" data-native-menu="false" id="deepart" asp-for="DepartID" asp-items="ViewBag.deepart">
+                                <option disabled selected="selected">Select One</option>
+                            </select>
+                            @**@
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <a href="#" data-toggle="modal"
+                                       data-target="#Depcreate">  <i class="fas fa-plus-circle"></i></a>
+                                </span>
+                            </div>
+                        </div>
+                        <span asp-validation-for="DepartID" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+
+                <!-- /.card-body -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+
+    @*DepartmentCreate*@
+    <div class="modal fade" id="Depcreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Department</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Department Name</label>
+                        <input type="text" class="form-control" id="depname" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Department Score</label>
+                        <input type="text" class="form-control" id="Depscore" placeholder="Score">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="depclose" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" id="Depsubmit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    @section Scripts {
+
+        <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+        <script>
+
+            $("#Depsubmit").click(function () {
+
+                var mydata = {};
+                mydata.DepartmentName = $("#depname").val();
+                mydata.DepartmentScore = $("#Depscore").val();
+                console.log(mydata);
+
+                $.ajax({
+                    url: "/Course/DepartmentCrt",
+                    type: "POST",
+                    data: { data: mydata },
+                    success: function (subheads) {
+                        $('#deepart').find("option:not(:first)").remove();
+                        console.log(subheads);
+                        $.each(subheads, function (index, subhead) {
+                            $('#deepart').append(`<option value = "` + subhead.departmentID + `">` + subhead.departmentName + `</option>`);
+                        });
+
+                        $('#deepart option:eq(1)').prop('selected', true);
+                        $("#depname").val(null);
+                        $("#Depscore").val(null);
+                        $('#Depcreate').modal('toggle');
+                        $('#depclose').click();
+
+                    },
+                    error: function (error) {
+                        alert('failed');
+                        alert(error);
+                    }
+                });
+
+                
+
+
+            });
+
+        </script>
+    }
+</body>
+</html>
+

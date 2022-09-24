@@ -1,5 +1,5 @@
-﻿
-@model IEnumerable<TestProrject.Models.Department>
+﻿@model IEnumerable<TestProrject.Models.Course>
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -14,15 +14,15 @@
         <div class="card-header">
             <h3 class="card-title">Exitst Units</h3>
         </div>
-        <a asp-action="DepartmentCreate" class=" btn btn-primary float-right">Create New</a>
+        <a asp-action="CourseCreate" class=" btn btn-primary float-right">Create New</a>
         <!-- /.card-header -->
         <div class="card-body">
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
 
-                        <th>Department Name</th>
-                        <th>Department Score</th>
+                        <th>Course Code</th>
+                        <th>Course Name</th>
                         <th>Action</th>
 
                     </tr>
@@ -32,19 +32,19 @@
                     {
                         <tr>
                             <td>
-                                @items.DepartmentName
+                                @items.CourseCode
                             </td>
                             <td>
-                                @items.DepartmentScore
+                                @items.CourseName
                             </td>
                             <td class="float-right">
                                 @*<div class="btn-group" role="group" aria-label="Basic example">
-                                    <a asp-action="EditDepartm" asp-route-id="@items.UnitID" type="button" class="btn btn-warning">Edit</a>
-                                    <button class="btn btn-danger stitchdetails" type="button"
-                                            data-assigned-id="@items.UnitID" data-text="@items.UnitName">
-                                        Delete
-                                    </button>
-                                </div>*@
+                                        <a asp-action="EditDepartm" asp-route-id="@items.UnitID" type="button" class="btn btn-warning">Edit</a>
+                                        <button class="btn btn-danger stitchdetails" type="button"
+                                                data-assigned-id="@items.UnitID" data-text="@items.UnitName">
+                                            Delete
+                                        </button>
+                                    </div>*@
                             </td>
                         </tr>
                     }
@@ -53,8 +53,8 @@
                 <tfoot>
                     <tr>
 
-                        <th>Department Name</th>
-                        <th>Department Score</th>
+                        <th>Course Code</th>
+                        <th>Course Name</th>
                         <th>Action</th>
                     </tr>
                 </tfoot>
@@ -112,25 +112,23 @@
         });*@
         </script>
         <script>
-                $(function () {
-                    $("#example1").DataTable({
-                        "responsive": true, "lengthChange": false, "autoWidth": false,
-                        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-                    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-                    $('#example2').DataTable({
-                        "paging": true,
-                        "lengthChange": false,
-                        "searching": false,
-                        "ordering": true,
-                        "info": true,
-                        "autoWidth": false,
-                        "responsive": true,
-                    });
+            $(function () {
+                $("#example1").DataTable({
+                    "responsive": true, "lengthChange": false, "autoWidth": false,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+                $('#example2').DataTable({
+                    "paging": true,
+                    "lengthChange": false,
+                    "searching": false,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": false,
+                    "responsive": true,
                 });
+            });
         </script>
     }
 
 </body>
 </html>
-
-
