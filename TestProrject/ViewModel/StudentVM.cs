@@ -27,5 +27,14 @@ namespace TestProrject.ViewModel
         public string StudentPicture { get; set; }
 
         public bool DeleteStu { get; set; }
+
+
+        public int DepartmentID { get; set; }
+
+
+        public String DepartmentName { get; set; }
+
+
+        public int DepartmentScore { get; set; }
     }
 }

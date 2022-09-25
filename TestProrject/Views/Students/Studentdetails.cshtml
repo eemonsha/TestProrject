@@ -1,0 +1,64 @@
+﻿@model TestProrject.ViewModel.StudentVM
+
+
+
+
+
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-4">
+                <div class="card text-black">
+                    <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
+                    @if (Model.StudentPicture == null)
+                    {
+                        <div class="propic">
+                            <img src="https://www.carlscards.com/wp-content/uploads/2020/05/No-Image.jpg"
+                                 class="card-img-top" alt="@Model.StudentName Picture" />
+                        </div>
+
+                    }
+                    else
+                    {
+                        <img src="~/images/Student/@Model.StudentPicture" class="rounded" alt="@Model.StudentName Picture">
+                    }
+
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5 class="card-title">@Model.StudentName</h5>
+                            <p class="text-muted mb-4">@Model.StudentIDentity</p>
+                        </div>
+                        <div>
+                            <div class="d-flex justify-content-between">
+                                <span>Department</span><span>৳@Model.DepartmentName</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Remain Balance</span><span>৳@Model.RemainBalance</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Score</span><span>@Model.StudentScore</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Student Status</span><span>@Model.StudentStatus</span>
+                            </div>
+
+
+                        </div>
+                        <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                            @*<span>Total</span><span>$7,197.00</span>*@
+                            <a asp-action="EditProduct" class="btn btn-outline-secondary" asp-route-id="@Model.StudentID">Edit</a>
+                            <a asp-action="ProductIndex" class="btn btn-outline-danger">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div>
+
+</div>
+
+
+

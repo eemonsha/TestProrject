@@ -99,6 +99,94 @@ namespace TestProrject.Controllers
         }
 
 
+        public IActionResult Studentdetails(int id)
+        {
+            var sql = (from student in _context.Students.Where(x => x.StudentID == id)
+                       join dep in _context.Departments
+                       on student.DepID equals dep.DepartmentID
+                       select new StudentVM
+                       {
+                           StudentName = student.StudentName,
+                           StudentIDentity = student.StudentIDentity,
+                           Balance = student.Balance,
+                           RemainBalance = student.RemainBalance,
+                           StudentScore = student.StudentScore,
+                           StudentStatus = student.StudentStatus,
+                           StudentPicture = student.PPicture,
+                           DepartmentID = dep.DepartmentID,
+                           DepartmentName = dep.DepartmentName,
+
+
+                       }).FirstOrDefault();
+                       
+
+            return View(sql);
+        }
+
+
+        public IActionResult PAymentIndex()
+        {
+            var paylist = _context.PaymentRecharges.ToList();
+            return View(paylist);
+        }
+
+        public IActionResult PaymentRecharge()
+        {
+            DefaultData();
+            var payrcrg = new PaymentRecharge();
+            payrcrg.PaymentAmount = 0;
+            payrcrg.PaymentDate = System.DateTime.Now;
+
+            return View();
+        }
+
+
+        private void DefaultData()
+        {
+            
+            
+
+            IEnumerable<SelectListItem> stu = from Student in _context.Students.ToList()
+                                              select new SelectListItem
+                                              {
+                                                  Value = Student.StudentID.ToString(),
+                                                  Text = Student.StudentIDentity + "_" + Student.StudentName
+                                              };
+            ViewBag.stu = stu;
+        }
+
+        [HttpPost]
+        public IActionResult PaymentRecharge(PaymentRecharge paymentRecharge)
+        {
+            if (paymentRecharge.PStudentID == 0)
+            {
+                _toastNotification.AddErrorToastMessage("Please specify Student");
+                DefaultData();//loading default data
+                return View(paymentRecharge);
+            }
+
+            var tk = _context.Students.Where(x => x.StudentID == paymentRecharge.PStudentID).FirstOrDefault();
+            tk.RemainBalance = tk.RemainBalance + paymentRecharge.PaymentAmount;
+            _context.Update(tk);
+            _context.SaveChanges();
+
+            _context.PaymentRecharges.Add(paymentRecharge);
+            _context.SaveChanges();
+            _toastNotification.AddSuccessToastMessage("Payment Added");
+
+            return RedirectToAction("PAymentIndex");
+        }
+
+        public JsonResult GetStudentAmount(int stuid)
+        {
+
+            var rmnamn = _context.Students.FirstOrDefault(x => x.StudentID == stuid).RemainBalance;
+            return Json(rmnamn);
+
+
+        }
+       
+
         private string UploadedFile(StudentVM model)
         {
             string uniqueFileName = null;

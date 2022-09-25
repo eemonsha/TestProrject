@@ -1,0 +1,109 @@
+﻿@model TestProrject.Models.PaymentRecharge
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <div class="card card-primary mt-5">
+        <div class="card-header">
+            <h3 class="card-title">Student Payment Recharge</h3>
+        </div>
+        <form asp-action="PaymentRecharge">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label asp-for="PStudentID" class="control-label">Student</label>
+                        <div class=" input-group">
+                            <select class="form-control select2" data-native-menu="false" id="Pst" asp-for="PStudentID" asp-items="ViewBag.stu">
+                                <option disabled selected="selected">Select One</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="PStudentID" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Remain Amount</label>
+                            <input type="text" readonly class="form-control" id="rr"  placeholder="RRAmount"  >
+                        </div>
+                        <span asp-validation-for="PaymentAmount" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Recharge Amount</label>
+                            <input type="text" class="form-control" id="Amnt" placeholder="Amount" required asp-for="PaymentAmount">
+                        </div>
+                        <span asp-validation-for="PaymentAmount" class="text-danger"></span>
+                        <span>Total Amount: <span id="sr">0</span> </span>
+                    </div>
+                </div>
+
+
+
+                <!-- /.card-body -->
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+    @section Scripts {
+
+        <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+        <script>
+            
+            //$('#Amnt').keyup(function () {
+                
+            //    $('#rr').text($('#Amnt').val());
+            //});
+
+            //$('#Amnt').keyup(function () {
+                //var qty = $('#Amnt').val();
+            //    $('#rr').text(qty);
+            //});
+            $('#Amnt').keyup(function () {
+                var add = $('#Amnt').val();
+                var rem = $('#rr').val();
+                var total = parseInt(add) + parseInt(rem);
+                $('#sr').text(total);
+            });
+
+
+
+
+            $("#Pst").change(function () {
+                var stuid = $("#Pst").val();
+                console.log("Student id - ", stuid);
+
+                
+
+                if (stuid != null && stuid != '')
+                {
+                    $.getJSON('@Url.Action("GetStudentAmount")', { stuid: stuid }, function (amnts) {
+                        console.log(amnts);
+                        $('#rr').val(amnts);//input
+                        $('#sr').text(amnts);//text
+                        /*$('#rr').text(amnts);*/
+
+                       });
+                }
+            });
+        </script>
+    }
+</body>
+</html>

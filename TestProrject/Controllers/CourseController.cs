@@ -50,9 +50,12 @@ namespace TestProrject.Controllers
         public IActionResult CourseCreate(Course course) 
         {
 
-
+            var courseprice = _context.Departments.Where(x => x.DepartmentID == course.DepartID).FirstOrDefault();
+            var pp = courseprice.DepartmentCreditPrice * course.Coursecredit;
+            course.CoursePrice = pp;
             _context.Courses.Add(course);
             _context.SaveChanges();
+            _toastNotification.AddSuccessToastMessage("Course Added");
 
             return RedirectToAction("CourseIndex");
         }
@@ -64,6 +67,12 @@ namespace TestProrject.Controllers
             var dpt = _context.Departments.OrderByDescending(x => x.DepartmentID).ToList();
             return Json(dpt);
 
+        }
+
+        public JsonResult DepCrditPrice(int depid)
+        {
+            var deprice = _context.Departments.FirstOrDefault(x => x.DepartmentID == depid).DepartmentCreditPrice;
+            return Json(deprice);
         }
 
     }

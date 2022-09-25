@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TestProrject.Migrations
 {
-    public partial class initr : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,8 @@ namespace TestProrject.Migrations
                     CourseCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     CourseName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Coursecredit = table.Column<int>(type: "int", nullable: false),
-                    CoursecreditPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    DepartID = table.Column<int>(type: "int", nullable: false),
+                    CoursePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,7 +48,8 @@ namespace TestProrject.Migrations
                     DepartmentID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DepartmentName = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    DepartmentScore = table.Column<int>(type: "int", nullable: false)
+                    DepartmentScore = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DepartmentCreditPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {

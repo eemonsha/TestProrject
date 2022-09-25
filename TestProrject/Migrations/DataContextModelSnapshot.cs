@@ -36,11 +36,11 @@ namespace TestProrject.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<decimal>("CoursePrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("Coursecredit")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("CoursecreditPrice")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("DepartID")
                         .HasColumnType("int");
@@ -84,13 +84,16 @@ namespace TestProrject.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<decimal>("DepartmentCreditPrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("DepartmentName")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<int>("DepartmentScore")
-                        .HasColumnType("int");
+                    b.Property<decimal>("DepartmentScore")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("DepartmentID");
 

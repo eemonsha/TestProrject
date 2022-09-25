@@ -16,6 +16,7 @@ namespace TestProrject.Models
         public String DepartmentName { get; set; }
 
 
-        public int DepartmentScore { get; set; }
+        public decimal DepartmentScore { get; set; }
+        public decimal DepartmentCreditPrice { get; set; }
     }
 }

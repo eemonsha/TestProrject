@@ -18,37 +18,22 @@
         <form asp-action="CourseCreate">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Course Code</label>
                             <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Code" required asp-for="CourseCode" value="@ViewBag.code">
                         </div>
                         <span asp-validation-for="CourseCode" class="text-danger"></span>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Course Name</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Inventory Tittle" required asp-for="CourseName">
+                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Name" required asp-for="CourseName">
                         </div>
                         <span asp-validation-for="CourseName" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Course Credit</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Credit" asp-for="Coursecredit">
-                        </div>
-                        <span asp-validation-for="Coursecredit" class="text-danger"></span>
+                        
                     </div>
                     <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Credit Price</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Price" asp-for="CoursecreditPrice">
-                        </div>
-                        <span asp-validation-for="Coursecredit" class="text-danger"></span>
-                    </div>
-                    <div class="col-md-6">
                         <label asp-for="DepartID" class="control-label">Department</label>
                         <div class=" input-group">
                             <select class="form-control select2" data-native-menu="false" id="deepart" asp-for="DepartID" asp-items="ViewBag.deepart">
@@ -63,7 +48,27 @@
                             </div>
                         </div>
                         <span asp-validation-for="DepartID" class="text-danger"></span>
+                        
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Course Credit</label>
+                            <input type="text" class="form-control" id="CC" placeholder="Credit" asp-for="Coursecredit">
+                        </div>
+                        <span asp-validation-for="Coursecredit" class="text-danger"></span>
+                        <span>Credit Price: <span id="CCreditPrice">0</span> </span>
+                    </div>
+                    @*<div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Course Credit Price</label>
+                            <input type="text" class="form-control" id="CP" placeholder="Credit" asp-for="CoursePrice">
+                        </div>
+                        <span asp-validation-for="CoursePrice" class="text-danger"></span>
+                    </div>*@
+
+
                 </div>
 
 
@@ -105,6 +110,10 @@
                         <label for="exampleInputPassword1">Department Score</label>
                         <input type="text" class="form-control" id="Depscore" placeholder="Score">
                     </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Department Credit Price</label>
+                        <input type="text" class="form-control" id="DepcrePrice" placeholder="Score">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="depclose" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -125,12 +134,38 @@
 
         <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
         <script>
+            //function purchase() {
+            //    var qty = document.getElementById('CC').value;
+            //    document.getElementById('CP').value = qty;
+            //    console.log(CP);
+            //}
+
+
+
+
+        $("#deepart").change(function () {
+                var departid = $("#deepart").val();
+                console.log("Depid - ", departid);
+          if (departid != null && departid != '')
+            {
+              $.getJSON('@Url.Action("DepCrditPrice")', { depid: departid }, function (Creditprice) {
+                  console.log(Creditprice);
+                  $('#CCreditPrice').text(Creditprice);
+
+           });
+            }
+         });
+
+
+
+
 
             $("#Depsubmit").click(function () {
 
                 var mydata = {};
                 mydata.DepartmentName = $("#depname").val();
                 mydata.DepartmentScore = $("#Depscore").val();
+                mydata.DepartmentCreditPrice = $("#DepcrePrice").val();
                 console.log(mydata);
 
                 $.ajax({
@@ -147,6 +182,7 @@
                         $('#deepart option:eq(1)').prop('selected', true);
                         $("#depname").val(null);
                         $("#Depscore").val(null);
+                        $("#DepcrePrice").val(null);
                         $('#Depcreate').modal('toggle');
                         $('#depclose').click();
 
@@ -157,10 +193,13 @@
                     }
                 });
 
-                
-
-
             });
+
+
+
+
+
+
 
         </script>
     }
