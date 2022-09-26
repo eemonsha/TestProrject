@@ -68,33 +68,55 @@ namespace TestProrject.Controllers
         [HttpPost]
         public IActionResult StudentCreate(StudentVM student)
         {
-            var stuCode = _context.Students.Where(x => x.StudentIDentity == student.StudentIDentity).FirstOrDefault();
-            if (stuCode == null)
-            {
-                string uniqueFileName = UploadedFile(student);
-                var stdnt = new Student();
+            
 
-                stdnt.StudentName = student.StudentName;
-                stdnt.StudentIDentity = student.StudentIDentity;
-                stdnt.DepID = student.DepID;
-                stdnt.Balance = student.Balance;
-                stdnt.RemainBalance = stdnt.Balance;
-                stdnt.StudentScore = student.StudentScore;
-                stdnt.ISActive = student.ISActive;
-                stdnt.StudentStatus = student.StudentStatus = "NEW";
-                stdnt.PPicture = uniqueFileName;
+            
+                var stuCode = _context.Students.Where(x => x.StudentIDentity == student.StudentIDentity).FirstOrDefault();
+
+                if (stuCode == null)
+                {
+                    string uniqueFileName = UploadedFile(student);
+                    var stdnt = new Student();
+
+                    stdnt.StudentName = student.StudentName;
+                    stdnt.StudentIDentity = student.StudentIDentity;
+                    stdnt.DepID = student.DepID;
+                    stdnt.Balance = student.Balance;
+                    //stdnt.RemainBalance = stdnt.Balance;
+                    stdnt.RemainBalance = student.RemainBalance;
+                    stdnt.StudentScore = student.StudentScore;
+                    stdnt.ISActive = student.ISActive;
+                    stdnt.StudentStatus = student.StudentStatus = "NEW";
+                    stdnt.PPicture = uniqueFileName;
 
 
-                _context.Students.Add(stdnt);
-                _context.SaveChanges();
-                _toastNotification.AddSuccessToastMessage("Student Added");
-                return RedirectToAction("StudentIndex");
+                var depid = _context.Departments.Where(x => x.DepartmentID != student.DepartmentID).FirstOrDefault();
+                var depscore = depid.DepartmentScore;
+                if (depscore <= student.StudentScore)
+                {
 
-            }
-            else
-            {
-                TempData["msg"] = "Student ID Alrdy Exist";
-            }
+                    _context.Students.Add(stdnt);
+                    _context.SaveChanges();
+                    _toastNotification.AddSuccessToastMessage("Student Added");
+                    return RedirectToAction("StudentIndex");
+
+                }
+                else
+                {
+                    TempData["mg"] = "Student Score Not able to this department";
+                }
+                }
+             
+               
+                else
+                {
+                    TempData["msg"] = "Student ID Alrdy Exist";
+                }
+
+            
+
+
+            
             return View();
         }
 
@@ -186,7 +208,11 @@ namespace TestProrject.Controllers
 
         }
        
-
+        public JsonResult Getdepscore(int depid)
+        {
+            var score = _context.Departments.FirstOrDefault(x => x.DepartmentID == depid).DepartmentScore;
+            return Json(score);
+        }
         private string UploadedFile(StudentVM model)
         {
             string uniqueFileName = null;

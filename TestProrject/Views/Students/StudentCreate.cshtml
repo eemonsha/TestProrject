@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <label for="exampleInputPassword1">Student Name</label>
                             <input type="text" required class="form-control" id="exampleInputPassword1" placeholder="Name" asp-for="StudentName">
-                            
+
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -54,19 +54,20 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Balance</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Balance" asp-for="Balance">
+                            <input type="text" class="form-control" id="BB" placeholder="Balance" asp-for="Balance">
                         </div>
                     </div>
-                    @*<div class="col-md-4">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Remain Balance</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Remain Balance" asp-for="RemainBalance">
+                            <input type="text" class="form-control" readonly id="RB" placeholder="Remain Balance" asp-for="RemainBalance">
                         </div>
-                    </div>*@
+                    </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Score</label>
                             <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Score" asp-for="StudentScore">
+                            <p class="text-danger">    @TempData["mg"]</p>
                         </div>
                     </div>
 
@@ -87,7 +88,7 @@
                     </div>
 
                 </div>
-                
+
 
             </div>
 
@@ -112,6 +113,22 @@
         </script>*@
 
     @section Scripts {
+        <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+
+       
+        <script>
+            $('#BB').keyup(function () {
+                var qty = $('#BB').val();
+                $('#RB').val(qty);
+            });
+
+
+            $(document).ready(function () {
+                $('#deepart').select2();
+            });
+        </script>
+
+
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }
 </body>
