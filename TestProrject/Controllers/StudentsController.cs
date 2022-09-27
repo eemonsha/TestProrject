@@ -49,14 +49,8 @@ namespace TestProrject.Controllers
 
         public IActionResult StudentCreate()
         {
-            IEnumerable<SelectListItem> dep = from Department in _context.Departments.ToList()
-                                              select new SelectListItem
-                                              {
-                                                  Value = Department.DepartmentID.ToString(),
-                                                  Text = Department.DepartmentName
-                                              };
-            ViewBag.deepart = dep;
 
+            DfaultData();
 
 
             var NewStudent = new StudentVM();
@@ -64,6 +58,20 @@ namespace TestProrject.Controllers
             NewStudent.StudentScore = 0;
             return View(NewStudent);
         }
+
+        private void DfaultData()
+        {
+
+
+            IEnumerable<SelectListItem> dep = from Department in _context.Departments.ToList()
+                                              select new SelectListItem
+                                              {
+                                                  Value = Department.DepartmentID.ToString(),
+                                                  Text = Department.DepartmentName
+                                              };
+            ViewBag.deepart = dep;
+        }
+
 
         [HttpPost]
         public IActionResult StudentCreate(StudentVM student)
@@ -207,12 +215,18 @@ namespace TestProrject.Controllers
 
 
         }
-       
-        public JsonResult Getdepscore(int depid)
-        {
-            var score = _context.Departments.FirstOrDefault(x => x.DepartmentID == depid).DepartmentScore;
-            return Json(score);
-        }
+
+        //public JsonResult Getdepscore(int depid)
+        //{
+        //    var score = _context.Departments.FirstOrDefault(x => x.DepartmentID == depid).DepartmentScore;
+        //    return Json(score);
+        //}
+
+        //public JsonResult Getdepscore(decimal depscore)
+        //{
+        //    var score = _context.Departments.FirstOrDefault(x => x.DepartmentScore == depid).DepartmentScore;
+        //    return Json(score);
+        //}
         private string UploadedFile(StudentVM model)
         {
             string uniqueFileName = null;
