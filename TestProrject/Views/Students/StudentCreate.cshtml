@@ -82,12 +82,12 @@
                         </div>
                     </div>
                     @*<div class=" col-md-3">
-                        <div class="form-group form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" asp-for="ISActive" /> @Html.DisplayNameFor(model => model.ISActive)
-                            </label>
-                        </div>
-                    </div>*@
+                            <div class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="ISActive" /> @Html.DisplayNameFor(model => model.ISActive)
+                                </label>
+                            </div>
+                        </div>*@
                     <div class=" col-md-3">
                         <div class="form-group form-switch">
                             <label class="form-check-label">
@@ -118,20 +118,21 @@
 
         </script>*@
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
 
     @section Scripts {
         <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+        @*<script>
+                $(document).ready(function () {
+                    $('#deepart').select2();
+                });
+            </script>*@
 
         <script>
             $('#BB').keyup(function () {
                 var qty = $('#BB').val();
                 $('#RB').val(qty);
-            });
-
-
-            $(document).ready(function () {
-                $('#deepart').select2();
             });
         </script>
 
