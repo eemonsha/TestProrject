@@ -49,7 +49,7 @@ namespace TestProrject.Controllers
         [HttpPost]
         public IActionResult CourseCreate(Course course) 
         {
-
+        
             var courseprice = _context.Departments.Where(x => x.DepartmentID == course.DepartID).FirstOrDefault();
             var pp = courseprice.DepartmentCreditPrice * course.Coursecredit;
             course.CoursePrice = pp;
