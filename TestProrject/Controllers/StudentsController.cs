@@ -196,7 +196,7 @@ namespace TestProrject.Controllers
                     stdnt.StudentIDentity = student.StudentIDentity;
                     stdnt.DepID = student.DepID;
                     stdnt.Balance = student.Balance;
-                    //stdnt.RemainBalance = stdnt.Balance;
+                   
                     stdnt.RemainBalance = student.RemainBalance;
                     stdnt.StudentScore = student.StudentScore;
                     stdnt.ISActive = student.ISActive;
@@ -204,7 +204,8 @@ namespace TestProrject.Controllers
                     stdnt.PPicture = uniqueFileName;
 
 
-                var depid = _context.Departments.Where(x => x.DepartmentID != student.DepartmentID).FirstOrDefault();
+             
+                var depid = _context.Departments.Where(x => x.DepartmentID == stdnt.DepID).FirstOrDefault();
                 var depscore = depid.DepartmentScore;
                 if (depscore <= student.StudentScore)
                 {
@@ -217,8 +218,7 @@ namespace TestProrject.Controllers
                 }
                 else
                 {
-                    var dpid = _context.Departments.Where(x => x.DepartmentID != student.DepartmentID).FirstOrDefault();
-                    var dpscore = depid.DepartmentScore;
+                   
                     TempData["mg"] = depid.DepartmentName + " department minimum score needed: " + depscore ;
                     
                 }
