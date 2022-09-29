@@ -1,0 +1,59 @@
+﻿@using System.Data
+@model System.Data.DataTable 
+@{
+    ViewData["Title"] = "StudentSearch";
+}
+
+<h2 class="alert alert-info">StudentSearch</h2>
+<br />
+<h4 class="text-danger">@ViewBag.msg</h4>
+<br />
+<div class="card">
+
+
+    <div>
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="StudentSearch" class="form-inline" method="post">
+                    <label>Minimum score : </label>
+                    <input type="number" name="min" class="form-control" />
+                    <label>Maximum score : </label>
+                    <input type="number" name="max" class="form-control" />
+                    <span style="padding:10px;"></span>
+                    <button type="submit" class="btn btn-success btn-sm">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div>
+        @if (Model != null)
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        @foreach (DataColumn c in Model.Columns)
+                        {
+                            <th>@c.ColumnName</th>
+
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow r in Model.Rows)
+                    {
+                        <tr>
+                            @foreach (DataColumn c in Model.Columns)
+                            {
+                                <td>@r[c]</td>
+
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        }
+    </div>
+</div>
+

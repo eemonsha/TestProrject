@@ -460,3 +460,5 @@ C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Ra
 C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Students\PaymentRecharge.cshtml.g.cs
 C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Students\PAymentIndex.cshtml.g.cs
 C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Students\Studentdetails.cshtml.g.cs
+C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Students\StudentShow.cshtml.g.cs
+C:\Users\emons\source\repos\TestProrject\TestProrject\obj\Debug\netcoreapp3.1\Razor\Views\Students\StudentSearch.cshtml.g.cs

@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using NToastNotify;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,13 +36,14 @@ namespace TestProrject.Controllers
             var viewmodel = new List<StudentVM>();
             var model = new StudentVM();
 
-            foreach (var item in   stulist)
+            foreach (var item in stulist)
             {
                 model = new StudentVM
                 {
                     StudentID = item.StudentID,
                     StudentName = item.StudentName,
                     StudentIDentity = item.StudentIDentity,
+                    StudentScore = item.StudentScore,
                     StudentPicture = item.PPicture
                 };
                 viewmodel.Add(model);
@@ -47,10 +51,112 @@ namespace TestProrject.Controllers
             return View(viewmodel);
         }
 
+
+
+    
+
+        public IActionResult StudentShow()
+        {
+            var stu = from st in _context.Students
+                      join dep in _context.Departments
+                      on st.DepID equals dep.DepartmentID
+                      select new StudentVM
+                      {
+
+                          StudentID = st.StudentID,
+                          StudentName = st.StudentName,
+                          StudentIDentity = st.StudentIDentity,
+                          StudentScore = st.StudentScore,
+                          StudentPicture = st.PPicture,
+                          DepartmentName = dep.DepartmentName
+
+                      };
+            return View(stu);
+        }
+
+
+        //Search implement with store Procedure
+        public async Task<IActionResult> StudentSearch(int min, int max)
+        {
+         
+            if (min >= 0 && max > 0)
+            {
+                if(min > max)
+                {
+                    ViewBag.msg = " Maximum score must be gether then minimum score. ";
+                    return View();
+                }
+
+                //connection store procedure
+                using(var conn= _context.Database.GetDbConnection())
+                {
+                    await conn.OpenAsync();
+                    using(var cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = "getstudent"; //name of store procedure
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        //parameter passs
+                        DbParameter p1 = cmd.CreateParameter();
+                        p1.ParameterName = "@minscore";//store procedure variable name
+                        p1.Value = min; //Action variable name
+                        p1.DbType = System.Data.DbType.Int32;
+                        p1.Direction = System.Data.ParameterDirection.Input;
+
+                        //parameter passs
+                        DbParameter p2 = cmd.CreateParameter();
+                        p2.ParameterName = "@maxscore";//store procedure variable name
+                        p2.Value = max; //Action variable name
+                        p2.DbType = System.Data.DbType.Int32;
+                        p2.Direction = System.Data.ParameterDirection.Input;
+
+                        cmd.Parameters.Add(p1);//parameter add
+                        cmd.Parameters.Add(p2);//parameter add
+
+                        DbDataReader dr = cmd.ExecuteReader();//one time read data
+
+                        if (dr.HasRows)
+                        {
+                            DataTable dt = new DataTable();
+                            dt.Load(dr);//data load in this table 
+                            _toastNotification.AddSuccessToastMessage("Here Is the DATA");
+                            return View(dt); 
+                            
+                        }
+                        else
+                        {
+                            //ViewBag.msg = "No Data Found";
+                            _toastNotification.AddSuccessToastMessage("No Data Found");
+                            return View();
+                        }
+
+
+                    }
+
+                }
+            }
+            else
+            {
+                ViewBag.msg = "Min or Max Score must be provided ";
+                //_toastNotification.AddSuccessToastMessage("Min or Max Acore must be provided or grether then ZERO");
+                return View();
+            }
+           
+
+            
+        }
+
+        
+
+
+
+
+
         public IActionResult StudentCreate()
         {
 
             DfaultData();
+
 
 
             var NewStudent = new StudentVM();
@@ -111,7 +217,10 @@ namespace TestProrject.Controllers
                 }
                 else
                 {
-                    TempData["mg"] = "Student Score Not able to this department";
+                    var dpid = _context.Departments.Where(x => x.DepartmentID != student.DepartmentID).FirstOrDefault();
+                    var dpscore = depid.DepartmentScore;
+                    TempData["mg"] = depid.DepartmentName + " department minimum score needed: " + depscore ;
+                    
                 }
                 }
              
@@ -119,7 +228,8 @@ namespace TestProrject.Controllers
                 else
                 {
                     TempData["msg"] = "Student ID Alrdy Exist";
-                }
+                  
+            }
 
             
 
