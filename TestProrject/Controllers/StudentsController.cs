@@ -182,10 +182,10 @@ namespace TestProrject.Controllers
         [HttpPost]
         public IActionResult StudentCreate(StudentVM student)
         {
-            
 
-            
-                var stuCode = _context.Students.Where(x => x.StudentIDentity == student.StudentIDentity).FirstOrDefault();
+            DfaultData();
+
+            var stuCode = _context.Students.Where(x => x.StudentIDentity == student.StudentIDentity).FirstOrDefault();
 
                 if (stuCode == null)
                 {

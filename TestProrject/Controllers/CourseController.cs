@@ -36,7 +36,7 @@ namespace TestProrject.Controllers
         {
             IEnumerable<SelectListItem> dep = from Department in _context.Departments.ToList()
                                               select new SelectListItem
-                                              {
+                                               {
                                                   Value = Department.DepartmentID.ToString(),
                                                   Text = Department.DepartmentName
                                               };
