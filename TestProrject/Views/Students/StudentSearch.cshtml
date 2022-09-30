@@ -1,5 +1,10 @@
 ﻿@using System.Data
 @model System.Data.DataTable 
+@*ViewData PAss*@
+@{ 
+    System.Data.DataTable bong = ViewData["bongchog"] as System.Data.DataTable;
+}
+
 @{
     ViewData["Title"] = "StudentSearch";
 }
@@ -81,10 +86,11 @@
                         </div>
                     </div>*@
 
+                @*2nd Table*@
                     <div class="row d-flex flex-row-reverse">
 
                         <div class="col-md-6">
-                            <form asp-action="" method="post">
+                            <form asp-action="StudentSearch" method="post">
                                 <div class="row align-items-center">
                                     <div class="col-md-6">
                                         <label>Minimum score : </label>
@@ -97,6 +103,7 @@
                                         <span style="padding:10px;"></span>
                                     </div>
                                 </div>
+                                <input type="hidden" name="serchtoken" value="2" />
                                 <div class="row">
                                     <div class="col-md-12 d-flex justify-content-center">
                                         <button type="submit" class="btn btn-danger btn-sm">Search</button>
@@ -105,12 +112,12 @@
                             </form>
                         </div>
                         <div class="col-md-6 overflow-auto">
-                            @if (Model != null)
+                            @if (bong != null)
                             {
                                 <table class="table table-striped ">
                                     <thead>
                                         <tr>
-                                            @foreach (DataColumn c in Model.Columns)
+                                            @foreach (DataColumn c in bong.Columns)
                                             {
                                                 <th>@c.ColumnName</th>
 
@@ -118,10 +125,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (DataRow r in Model.Rows)
+                                        @foreach (DataRow r in bong.Rows)
                                         {
                                             <tr>
-                                                @foreach (DataColumn c in Model.Columns)
+                                                @foreach (DataColumn c in bong.Columns)
                                                 {
                                                     <td>@r[c]</td>
 

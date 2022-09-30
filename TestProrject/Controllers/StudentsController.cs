@@ -76,7 +76,7 @@ namespace TestProrject.Controllers
 
 
         //Search implement with store Procedure
-        public async Task<IActionResult> StudentSearch(int min, int max)
+        public async Task<IActionResult> StudentSearch(int min, int max, int serchtoken)
         {
          
             if (min >= 0 && max > 0)
@@ -120,6 +120,16 @@ namespace TestProrject.Controllers
                             DataTable dt = new DataTable();
                             dt.Load(dr);//data load in this table 
                             _toastNotification.AddSuccessToastMessage("Here Is the DATA");
+
+                            //2nd table show
+                            if(serchtoken == 2)
+                            {
+                                ViewData["bongchog"] = dt;
+                                _toastNotification.AddSuccessToastMessage("Here Is the 2nd DATA");
+                                return View();
+
+                            }
+                            
                             return View(dt); 
                             
                         }
