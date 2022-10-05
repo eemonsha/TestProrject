@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\emons\\source\\repos\\TestProrject\\TestProrject\\TestProrject.csproj": {}
+    "D:\\Practice\\TestProrject\\TestProrject\\TestProrject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\emons\\source\\repos\\TestProrject\\TestProrject\\TestProrject.csproj": {
+    "D:\\Practice\\TestProrject\\TestProrject\\TestProrject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\emons\\source\\repos\\TestProrject\\TestProrject\\TestProrject.csproj",
+        "projectUniqueName": "D:\\Practice\\TestProrject\\TestProrject\\TestProrject.csproj",
         "projectName": "TestProrject",
-        "projectPath": "C:\\Users\\emons\\source\\repos\\TestProrject\\TestProrject\\TestProrject.csproj",
+        "projectPath": "D:\\Practice\\TestProrject\\TestProrject\\TestProrject.csproj",
         "packagesPath": "C:\\Users\\emons\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\emons\\source\\repos\\TestProrject\\TestProrject\\obj\\",
+        "outputPath": "D:\\Practice\\TestProrject\\TestProrject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\emons\\AppData\\Roaming\\NuGet\\NuGet.Config",
