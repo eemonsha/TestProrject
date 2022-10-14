@@ -90,28 +90,6 @@
         <!-- AdminLTE for demo purposes -->
         <!-- Page specific script -->
         <script>
-        @*$(function () {
-            $('.stitchdetails').click(function () {
-                var Styleid = $(this).data('assigned-id');
-                var Stylename = $(this).data('text');
-                if (confirm("Are you Sure to Delete " + Stylename +" ?")) {
-                    $(this).closest("tr").remove();
-                    $.getJSON('@Url.Action("DeleteUnit")', { id: Styleid }, function (subheads) {
-                        if (subheads == 1 ) {
-                            alert("Successfull");
-                        };
-                    });
-                } else {
-
-
-                }
-                //alert("Are you Sure to Delete " + Stylename + Styleid +" ?")
-                console.log("sss", Styleid);
-            });
-
-        });*@
-        </script>
-        <script>
                 $(function () {
                     $("#example1").DataTable({
                         "responsive": true, "lengthChange": false, "autoWidth": false,
