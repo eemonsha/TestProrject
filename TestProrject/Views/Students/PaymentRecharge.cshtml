@@ -88,7 +88,6 @@
                 var stuid = $("#Pst").val();
                 console.log("Student id - ", stuid);
 
-
                 if (stuid != null && stuid != '')
                 {
                     $.getJSON('@Url.Action("GetStudentAmount")', { stuid: stuid }, function (amnts) {
